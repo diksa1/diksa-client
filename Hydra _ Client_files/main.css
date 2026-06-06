@@ -1,0 +1,95 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@import url('./ui.css');
+@import url('./settings.css');
+@import url('./gallery.css');
+
+:root {
+  --custom-cursor: default;
+  --custom-pointer: pointer;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Ubuntu', sans-serif;
+    color: #e2e2e2;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: var(--custom-cursor) !important;
+}
+
+/* Applies the custom pointer cursor globally across all clickable interactive elements */
+a, button, select, input, label, .cursor-pointer, .tab, .toggle-switch, .setting-slider, [cursor="pointer"], .slider, input[type=range]::-webkit-slider-thumb {
+    cursor: var(--custom-pointer) !important;
+}
+
+/* Base Utility Classes */
+.pointer-events-all { pointer-events: all !important; }
+.pointer-events-none { pointer-events: none !important; }
+.hidden { display: none !important; }
+.visible { display: block !important; }
+
+/* Game Layers - Strict Z-Indexing */
+#game-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    cursor: var(--custom-cursor) !important;
+}
+
+#hud-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* FIX: Leaderboard Position (Top Right) */
+#leaderboard-canvas {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+/* FIX: Menu Display - Removed Gray Overlay */
+#menu-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999; 
+    background: transparent; /* Changed from rgba(0,0,0,0.4) to transparent */
+    /* backdrop-filter: blur(2px); Removed blur so game is clear */
+}
+
+#settings-display, #gallery-display {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+}
+
+.toast { margin-top: 20px !important; }
+
+/* PERFORMANCE OVERRIDE */
+body.disable-glass * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
